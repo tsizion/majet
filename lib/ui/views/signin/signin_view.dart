@@ -16,6 +16,7 @@ class SigninView extends StackedView<SigninViewModel> {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(

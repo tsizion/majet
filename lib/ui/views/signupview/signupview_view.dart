@@ -16,6 +16,7 @@ class SignupView extends StackedView<SignupviewViewModel> {
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: ConstrainedBox(
           constraints: BoxConstraints(minHeight: height),

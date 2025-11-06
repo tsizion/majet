@@ -59,12 +59,12 @@ class AuthService {
         password: password,
       );
 
-      print('Auth signIn response: $res');
+      print('🔹 [AuthService] Auth signIn response: $res');
 
       final user = res.user;
       final session = res.session;
       if (user == null || session == null) {
-        print('SignIn failed: no user or session');
+        print('🛑 [AuthService] SignIn failed: no user or session');
         return false;
       }
 
@@ -75,20 +75,20 @@ class AuthService {
           .eq('email', normalizedEmail)
           .maybeSingle();
 
-      print('Users table record: $record');
+      print('🔹 [AuthService] Users table record: $record');
 
       if (record == null) {
-        print('SignIn failed: user not found in table');
+        print('🛑 [AuthService] SignIn failed: user not found in table');
         return false;
       }
 
       final Map<String, dynamic> userData = record as Map<String, dynamic>;
-      final approved = userData['approved'] as bool? ?? false;
 
-      if (!approved) {
-        print('SignIn failed: user not approved yet');
-        return false;
-      }
+      // --- APPROVED CHECK REMOVED ---
+      // if (!approved) {
+      //   print('🛑 [AuthService] SignIn failed: user not approved yet');
+      //   return false;
+      // }
 
       // Save user + token locally
       final prefs = await SharedPreferences.getInstance();
@@ -98,11 +98,11 @@ class AuthService {
           'user_fullName', user.userMetadata?['full_name'] ?? '');
       await prefs.setString('user_role', userData['role'] ?? 'consumer');
 
-      print('SignIn success for $email');
+      print('✅ [AuthService] SignIn success for $normalizedEmail');
       return true;
     } catch (e, s) {
-      print('SignIn error: $e');
-      print('Stacktrace: $s');
+      print('⚠️ [AuthService] SignIn error: $e');
+      print(s);
       return false;
     }
   }

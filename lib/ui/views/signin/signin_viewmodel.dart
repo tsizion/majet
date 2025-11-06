@@ -24,26 +24,24 @@ class SigninViewModel extends BaseViewModel {
         passwordController.text.trim(),
       );
 
-      // Print the full response
-      print('SignIn response: $response');
+      print('📝 [ViewModel] SignIn response: $response');
 
       if (response == true) {
-        // Navigate to home after successful login
+        print('🟢 [ViewModel] Navigation to Home');
         _navigationService.replaceWith(Routes.homeView);
       } else {
-        // Print detailed info (you can customize inside AuthService)
-        // print('❌ SignIn failed. Check credentials or approval status.');
+        print('🔴 [ViewModel] SignIn failed in AuthService');
       }
     } catch (e, s) {
-      // Catch any unexpected errors and stacktrace
-      print('SignIn error: $e');
-      print('Stacktrace: $s');
+      print('⚠️ [ViewModel] SignIn error: $e');
+      print(s);
     } finally {
       setBusy(false);
     }
   }
 
   void goToSignup() {
+    print('🟡 [ViewModel] Navigating to Signup');
     _navigationService.navigateTo(Routes.signupView);
   }
 
