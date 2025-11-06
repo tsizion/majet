@@ -11,17 +11,17 @@ import 'package:majet/ui/views/upload/upload_view.dart';
 import 'package:majet/ui/views/recipe_detail/recipe_detail_view.dart';
 import 'package:majet/ui/views/startup/startup_view.dart';
 import 'package:majet/ui/views/signupview/signupview_view.dart';
+import 'package:majet/ui/views/signin/signin_view.dart';
 // @stacked-import
 
 @StackedApp(
   routes: [
     MaterialRoute(page: HomeView),
     MaterialRoute(page: StartupView),
-    MaterialRoute(page: HomeView),
     MaterialRoute(page: UploadView),
     MaterialRoute(page: RecipeDetailView),
-    MaterialRoute(page: StartupView),
     MaterialRoute(page: SignupView),
+    MaterialRoute(page: SigninView),
 // @stacked-route
   ],
   dependencies: [

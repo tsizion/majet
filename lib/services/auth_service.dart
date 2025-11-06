@@ -52,10 +52,14 @@ class AuthService {
   /// SIGN IN a user
   Future<bool> signIn(String email, String password) async {
     try {
+      final normalizedEmail = email.trim().toLowerCase();
+
       final AuthResponse res = await _client.auth.signInWithPassword(
-        email: email,
+        email: normalizedEmail,
         password: password,
       );
+
+      print('Auth signIn response: $res');
 
       final user = res.user;
       final session = res.session;
@@ -65,8 +69,13 @@ class AuthService {
       }
 
       // Fetch user from table
-      final record =
-          await _client.from('users').select().eq('email', email).maybeSingle();
+      final record = await _client
+          .from('users')
+          .select()
+          .eq('email', normalizedEmail)
+          .maybeSingle();
+
+      print('Users table record: $record');
 
       if (record == null) {
         print('SignIn failed: user not found in table');
@@ -91,8 +100,9 @@ class AuthService {
 
       print('SignIn success for $email');
       return true;
-    } catch (e) {
+    } catch (e, s) {
       print('SignIn error: $e');
+      print('Stacktrace: $s');
       return false;
     }
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:majet/components/PrimaryButton.dart';
 import 'package:stacked/stacked.dart';
 import 'startup_viewmodel.dart';
 
@@ -11,49 +12,50 @@ class StartupView extends StackedView<StartupViewModel> {
     StartupViewModel viewModel,
     Widget? child,
   ) {
-    final theme = Theme.of(context);
-
     return Scaffold(
-      backgroundColor: theme.colorScheme.background,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "Welcome to Recipe App!",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 20),
-              const Text(
-                "Get started by continuing as a guest or signing up.",
-                style: TextStyle(fontSize: 16),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 40),
-              ElevatedButton(
-                onPressed: viewModel.continueAsGuest,
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 50),
-                ),
-                child: const Text("Continue as Guest"),
-              ),
-              const SizedBox(height: 15),
-              ElevatedButton(
-                onPressed: viewModel.signUp,
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 50),
-                ),
-                child: const Text("Sign Up"),
-              ),
-            ],
+      body: Stack(
+        children: [
+          // Full-screen background image
+          SizedBox.expand(
+            child: Image.asset(
+              'assets/food.png',
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
+          // Semi-transparent yellow overlay (brand theme)
+          Container(
+            color: const Color.fromARGB(255, 14, 9, 2).withOpacity(0.5),
+          ),
+          // Centered content
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Logo image
+                  Image.asset(
+                    'assets/logo.png',
+                    width: 150,
+                    height: 150,
+                  ),
+                  const SizedBox(height: 30),
+                  // Continue as Guest button
+                  PrimaryButton(
+                    label: "Continue as Guest",
+                    onPressed: viewModel.continueAsGuest,
+                  ),
+                  const SizedBox(height: 15),
+                  // Sign Up button
+                  PrimaryButton(
+                    label: "Sign Up",
+                    onPressed: viewModel.signUp,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

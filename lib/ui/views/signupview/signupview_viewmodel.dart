@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:majet/services/auth_service.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
+import 'package:majet/app/app.locator.dart';
+import 'package:majet/app/app.router.dart';
 
 class SignupviewViewModel extends BaseViewModel {
   final AuthService _authService = AuthService();
+  final NavigationService _navigationService = locator<NavigationService>();
 
   final formKey = GlobalKey<FormState>();
   final fullNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
   String role = 'consumer';
 
-  bool isLoading = false;
-
-  /// Register user and return true if success
   Future<bool> registerUser() async {
     if (!(formKey.currentState?.validate() ?? false)) return false;
 
     setBusy(true);
-    isLoading = true;
-    notifyListeners();
 
     try {
       final success = await _authService.signUp(
@@ -30,9 +30,8 @@ class SignupviewViewModel extends BaseViewModel {
       );
 
       if (success) {
-        debugPrint('Registration successful!');
-      } else {
-        debugPrint('Registration failed!');
+        /// ✅ Redirect to Signin after successful signup
+        _navigationService.replaceWith(Routes.signinView);
       }
 
       return success;
@@ -40,10 +39,13 @@ class SignupviewViewModel extends BaseViewModel {
       debugPrint('Signup error: $e');
       return false;
     } finally {
-      isLoading = false;
       setBusy(false);
-      notifyListeners();
     }
+  }
+
+  /// ✅ Manual navigation to Signin
+  void navigateToSignin() {
+    _navigationService.navigateTo(Routes.signinView);
   }
 
   @override

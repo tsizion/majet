@@ -694,7 +694,7 @@ class MockDialogService extends _i1.Mock implements _i2.DialogService {
 /// See the documentation for Mockito's code generation for more information.
 class MockAuthService extends _i1.Mock implements _i7.AuthService {
   @override
-  _i5.Future<_i8.AppUser?> signUp(
+  _i5.Future<bool> signUp(
     String? email,
     String? password,
     String? fullName, {
@@ -710,12 +710,12 @@ class MockAuthService extends _i1.Mock implements _i7.AuthService {
           ],
           {#role: role},
         ),
-        returnValue: _i5.Future<_i8.AppUser?>.value(),
-        returnValueForMissingStub: _i5.Future<_i8.AppUser?>.value(),
-      ) as _i5.Future<_i8.AppUser?>);
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 
   @override
-  _i5.Future<_i8.AppUser?> signIn(
+  _i5.Future<bool> signIn(
     String? email,
     String? password,
   ) =>
@@ -727,9 +727,9 @@ class MockAuthService extends _i1.Mock implements _i7.AuthService {
             password,
           ],
         ),
-        returnValue: _i5.Future<_i8.AppUser?>.value(),
-        returnValueForMissingStub: _i5.Future<_i8.AppUser?>.value(),
-      ) as _i5.Future<_i8.AppUser?>);
+        returnValue: _i5.Future<bool>.value(false),
+        returnValueForMissingStub: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 
   @override
   _i5.Future<void> signOut() => (super.noSuchMethod(
@@ -740,6 +740,16 @@ class MockAuthService extends _i1.Mock implements _i7.AuthService {
         returnValue: _i5.Future<void>.value(),
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
+
+  @override
+  _i5.Future<_i8.AppUser?> getCurrentUser() => (super.noSuchMethod(
+        Invocation.method(
+          #getCurrentUser,
+          [],
+        ),
+        returnValue: _i5.Future<_i8.AppUser?>.value(),
+        returnValueForMissingStub: _i5.Future<_i8.AppUser?>.value(),
+      ) as _i5.Future<_i8.AppUser?>);
 }
 
 /// A class which mocks [RecipeService].
