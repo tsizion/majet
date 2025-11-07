@@ -4,6 +4,7 @@ import 'package:majet/app/app.locator.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:majet/services/auth_service.dart';
 import 'package:majet/services/recipe_service.dart';
+import 'package:majet/services/category_service.dart';
 // @stacked-import
 
 import 'test_helpers.mocks.dart';
@@ -16,6 +17,7 @@ import 'test_helpers.mocks.dart';
     MockSpec<DialogService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<AuthService>(onMissingStub: OnMissingStub.returnDefault),
     MockSpec<RecipeService>(onMissingStub: OnMissingStub.returnDefault),
+    MockSpec<CategoryService>(onMissingStub: OnMissingStub.returnDefault),
 // @stacked-mock-spec
   ],
 )
@@ -25,6 +27,7 @@ void registerServices() {
   getAndRegisterDialogService();
   getAndRegisterAuthService();
   getAndRegisterRecipeService();
+  getAndRegisterCategoryService();
 // @stacked-mock-register
 }
 
@@ -93,6 +96,13 @@ MockRecipeService getAndRegisterRecipeService() {
   _removeRegistrationIfExists<RecipeService>();
   final service = MockRecipeService();
   locator.registerSingleton<RecipeService>(service);
+  return service;
+}
+
+MockCategoryService getAndRegisterCategoryService() {
+  _removeRegistrationIfExists<CategoryService>();
+  final service = MockCategoryService();
+  locator.registerSingleton<CategoryService>(service);
   return service;
 }
 // @stacked-mock-create

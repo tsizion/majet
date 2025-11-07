@@ -12,6 +12,7 @@ import 'package:majet/models/recipe_model.dart' as _i10;
 import 'package:majet/models/step_model.dart' as _i11;
 import 'package:majet/models/user_model.dart' as _i8;
 import 'package:majet/services/auth_service.dart' as _i7;
+import 'package:majet/services/category_service.dart' as _i13;
 import 'package:majet/services/recipe_service.dart' as _i9;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i3;
@@ -833,3 +834,8 @@ class MockRecipeService extends _i1.Mock implements _i9.RecipeService {
         returnValueForMissingStub: _i5.Future<_i10.Recipe?>.value(),
       ) as _i5.Future<_i10.Recipe?>);
 }
+
+/// A class which mocks [CategoryService].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCategoryService extends _i1.Mock implements _i13.CategoryService {}

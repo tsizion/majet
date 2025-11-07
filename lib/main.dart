@@ -44,9 +44,10 @@ class MainApp extends StatelessWidget {
         primaryColor: primaryColor, // Primary color of your app
         colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
         scaffoldBackgroundColor: Colors.white,
+
         appBarTheme: const AppBarTheme(
           backgroundColor: Color.fromARGB(255, 255, 255, 255),
-          foregroundColor: Color.fromARGB(255, 26, 26, 26),
+          foregroundColor: Color.fromARGB(255, 23, 4, 4),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(

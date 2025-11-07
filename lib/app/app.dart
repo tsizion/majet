@@ -12,6 +12,7 @@ import 'package:majet/ui/views/recipe_detail/recipe_detail_view.dart';
 import 'package:majet/ui/views/startup/startup_view.dart';
 import 'package:majet/ui/views/signupview/signupview_view.dart';
 import 'package:majet/ui/views/signin/signin_view.dart';
+import 'package:majet/services/category_service.dart';
 // @stacked-import
 
 @StackedApp(
@@ -30,6 +31,7 @@ import 'package:majet/ui/views/signin/signin_view.dart';
     LazySingleton(classType: NavigationService),
     LazySingleton(classType: AuthService),
     LazySingleton(classType: RecipeService),
+    LazySingleton(classType: CategoryService),
 // @stacked-service
   ],
   bottomsheets: [

@@ -14,7 +14,7 @@ const Color accentColor =
 /// Grey shades
 const Color darkGreyColor = Color(0xFF121212);
 const Color mediumGrey = Color(0xFF232323);
-const Color lightGrey = Color(0xFF707070);
+const Color lightGrey = Color.fromARGB(255, 68, 65, 65);
 const Color veryLightGrey = Color(0xFFD9D9D9);
 
 /// Neutral colors
